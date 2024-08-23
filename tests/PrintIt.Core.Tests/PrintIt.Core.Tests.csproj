@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <LangVersion>8</LangVersion>
+    <CodeAnalysisRuleSet>..\..\ca.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+    <PackageReference Include="Moq" Version="4.20.70" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="xunit" Version="2.9.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\PrintIt.Core\PrintIt.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Pdfium\dummy.pdf" />
+    <EmbeddedResource Include="Pdfium\dummy.pdf" />
+    <None Remove="Pdfium\dummy-snapshot.png" />
+    <EmbeddedResource Include="Pdfium\dummy-snapshot.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\pdfium-binary\pdfium.dll">
+      <Link>pdfium.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
